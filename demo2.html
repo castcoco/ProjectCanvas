@@ -1,0 +1,102 @@
+<html>
+	<head>
+	<title>demo canvas</title>
+	<script src = "http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.rawgit.com/konvajs/konva/1.6.3/konva.min.js"></script>
+	<!-- <script src = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script> -->
+	
+	<html lang="en">
+	<style>
+	body{
+		background: #F0E68C;
+	}
+	#container-template { 
+		width:500px;
+		height:500px;
+		border: solid 1px;
+		background-size: 20px 20px;
+		background-image: linear-gradient(to right, grey 1px, transparent 1px), linear-gradient(to bottom, grey 1px, transparent 1px);
+		background-color: #ffffff;
+		-webkit-box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+		-moz-box-shadow:4px 4px 8px rgba(0,0,0,0.5);
+		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+		border-radius: 15px;
+		margin-left:auto;
+		margin-right:auto;
+		margin-top:100px;
+	}
+
+	/*#container-template{
+		width:500px;
+		height:100px;
+		position:relative;
+		background:lightgreen;
+		border:solid 2px;
+	}*/
+
+	.toolbar{
+		position:relative;
+		margin-left:auto;
+		margin-right:auto;
+		width:600px;
+		height:80px;
+		background:#ffffff;
+		-webkit-box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+		-moz-box-shadow:4px 4px 8px rgba(0,0,0,0.5);
+		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+		cursor:pointer;
+	}
+
+	.bar{
+		/*position:absolute;*/
+		display:inline-block;
+		vertical-align:middle;
+		text-align: center;
+		float:left;
+		margin-left: 30px;
+		margin-top:10px;
+		margin-bottom:5px;
+		*display:inline;
+		zoom:1
+		width:60px;
+		height:60;
+	}
+
+	#controls {
+		padding-top: 5px;
+		padding-bottom: 10px;
+		padding-left: 300px;
+
+	}
+
+	</style>
+	</head>
+	
+	<body>
+		<h1>canvas drag and drop </h1>
+		<div id="controls">
+		
+		Categories: <select id = "categoriesSelect">
+					<option value = "herbs">Herbs</option>
+					<option value = "fruits" selected = "selected">Fruits</option>
+					<option value = "vegetable">Vegetable</option>
+					<option value = "flowers">Flowers</option>
+					<option value = "trees">Trees</option>
+					</select>
+
+		</div>
+		<div class="toolbar" id="toolbar">
+			<div id="inner">
+				<div class="dragMe"><img class ="bar" id ="barEle" src ="images/testherbslcon.png" value= strawberry width= "60" height ="60" draggable = "true" ></div>
+				<div class="dragMe"><img class ="bar" id ="barEle" src ="images/blueberries.png" value= blueberry width= "60" height ="60" draggable = "true" ></div>
+				<div class="dragMe"><img class ="bar" id ="barEle" src ="images/raspberries2.png" value= raspberry width= "60" height ="60" draggable = "true" ></div>
+				<div class="dragMe"><img class ="bar" id ="barEle" src ="images/apple.png" value= apple width= "60" height ="60" draggable = "true" ondragstart="function(evt)"></div>
+		</div>
+		</div>
+		<div id=main>
+		<div id="container-template" width="600" height="500"></div>
+			 <script src = "demojs3.js"></script>
+		</div>
+		
+	</body>
+</html>
