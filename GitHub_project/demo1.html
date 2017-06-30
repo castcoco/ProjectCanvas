@@ -1,0 +1,59 @@
+<html>
+	<head>
+	<title>demo canvas</title>
+	<script src = "http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!-- <script src = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="democss.css">
+	<html lang="en">
+	</head>
+	
+	<body>
+		<h1>canvas </h1>
+		<div id="controls">
+		
+		Categories: <select id = "categoriesSelect">
+					<option value = "herbs">Herbs</option>
+					<option value = "fruits" selected = "selected">Fruits</option>
+					<option value = "vegetable">Vegetable</option>
+					<option value = "flowers">Flowers</option>
+					<option value = "trees">Trees</option>
+					</select>
+
+		</div>
+		<div class="toolbar" id="toolbar">
+			<div id="inner">
+				<div class="dragMe"><img class ="bar" id ="barEle" src ="images/strawberries2.png" value= strawberry width= "60" height ="60" draggable = "true" ></div>
+				<div class="dragMe"><img class ="bar" id ="barEle" src ="images/blueberries.png" value= blueberry width= "60" height ="60" draggable = "true" ></div>
+				<div class="dragMe"><img class ="bar" id ="barEle" src ="images/raspberries2.png" value= raspberry width= "60" height ="60" draggable = "true" ></div>
+				<div class="dragMe"><img class ="bar" id ="barEle" src ="images/apple.png" value= apple width= "60" height ="60" draggable = "true" ondragstart="function(evt)"></div>
+		<!-- <ul>
+		<img class ="bar" src ="images/daisy.png" value= daisy width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		<img class ="bar" src ="images/hydreangea.png" value= hydreangea width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		<img class ="bar" src ="images/lavender.png" value= lavender width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		<img class ="bar" src ="images/rose.png" value= rose width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		<img class ="bar" src ="images/tulip2.png" value= tulip width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		<ul>
+		<img class ="bar" src ="images/carrot.png" value= carrot width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		<img class ="bar" src ="images/tomato3.png" value= hydreangea width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		<img class ="bar" src ="images/chilipeppers.png" value= lavender width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		<img class ="bar" src ="images/radish.png" value= rose width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		</ul>
+		<ul>
+		<img class ="bar" src ="images/avocado.png" value= carrot width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		<img class ="bar" src ="images/lemons.png" value= hydreangea width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		<img class ="bar" src ="images/pears2.png" value= lavender width= "60" height ="60" draggable = "true" ondragstart="dragStart(event)">
+		</ul> -->
+			</div>
+		</div>
+	
+		<br>
+		<div id="main">
+		<canvas id='iconMenuCanvas' width='75' height='400'> Canvas is not supported</canvas>
+
+
+		<canvas id="canvas" width="600" height="400" > canvas is not supported </canvas>    <!--width:600px height:400px-->
+		</div>
+		<script src = "demojs.js"></script>
+		<script src = "demojs2.js"></script>
+	</body>
+</html>
