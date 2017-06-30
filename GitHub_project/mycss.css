@@ -1,0 +1,46 @@
+.menubar ul{
+	list-style:none;
+	margin: 0px; padding: 0px;
+
+
+}
+.menubar ul li a{
+	text-decoration: none;
+	color: white;
+	display:block;
+}
+
+.menubar ul li{
+	margin: 0;
+	padding: 0;
+	float:right;
+	width:200px;
+	height:40px;
+	background-color:green;
+	font-size: 16px;
+	font-family: Verdana;
+	line-height:40px;
+	text-align: center;
+	opacity:.7;
+	position:relative;
+
+}
+
+.menubar ul li a:hover{
+	background-color: yellow;
+}
+
+
+.menubar ul li ul li{
+	display:none;
+}
+
+.menubar ul li:hover ul li{
+	display:block;
+}
+
+.menubar ul ul ul{
+	margin-left:200px;
+	top:0px;
+	position:absolute;
+}
