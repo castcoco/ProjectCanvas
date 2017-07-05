@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content-type="width=device-width intial-scale=1">
+	<script src = "http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
+	<style>
+	#containerDrop { 
+		width:500px;
+		height:500px;
+		border: 1px;
+		background-size: 10px 10px;
+		background-image: linear-gradient(to right, powderblue 1px, transparent 1px), linear-gradient(to bottom, powderblue 1px, transparent 1px);
+		background-color: #ffffff;
+		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+		border-radius: 15px;
+		margin-left:auto;
+		margin-right:auto;
+		margin-top:20px;
+		}
+
+	#origin
+		{
+		  background-color: lightgreen;
+		}
+
+	#origin img, #drop img {
+	  margin-top: 3px;
+	  margin-left: 5px;
+	}
+
+	
+	.over {
+	  border: solid 5px purple;
+	}
+
+	.draggable{
+	  border: solid 2px gray;
+	}
+
+	</style>
+
+</head>
+<body>
+<div class="content-info">
+			
+			<div class="herbhide" id="origin">
+				<img class ="dragObject" id ="barEle1" src ="images/basil.png" value= basil width= "60" height ="60" >
+				<img class ="dragObject" id ="barEle2" src ="images/parsely.png" value= mint width= "60" height ="60">
+				<img class ="dragObject" id ="barEle3" src ="images/mint2.png" value= mint width= "60" height ="60" >
+			</div>
+</div>
+
+
+<div id="containerDrop" width="600" height="500">
+	<br>
+	<p>Drop here</p>
+</div>
+<script src = "dnd.js"></script>
+</body>
+</html>
