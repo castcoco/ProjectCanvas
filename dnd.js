@@ -15,6 +15,19 @@ $('#containerDrop').droppable({
 }
 });
 
+//not workable
+// $("#containerDrop").droppable({
+// 	accept:".dragObject",
+// 	drop: function(ev, ui){
+// 			$(this).append($(ui.helper).clone())
+// 			.appendTo(this)
+// 			.toggleClass("item ui-draggable .dragObject")
+// 			.draggable({
+// 				containment: "#containerDrop"
+// 			});
+// 		}
+// });
+
 ///not workable
 // $("#eraseAllIcon").click(function(){
 // 	$("#containerDrop .item").remove();
