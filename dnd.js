@@ -1,15 +1,26 @@
+$(".dragObject").draggable({
+  	helper:'clone',
+  	cursor:'move',
+  	tolerant:'fit',
+  	
+});
+
+//workable code
 $('#containerDrop').droppable({
   accept:'.dragObject',
   drop: function(ev, ui) { 
-    $(ui.draggable).clone(true).appendTo(this);
-    
+  	if (ui.draggable[0].id) {
+    $(this).append($(ui.helper).clone(true).draggable({containment:"#containerDrop", scroll: false}));
   } 
+}
 });
 
-//resize the dragged item in container
-$(function(){
-	$("#draggable").resizable();
-})
+///not workable
+// $("#eraseAllIcon").click(function(){
+// 	$("#containerDrop .item").remove();
+// })
 
-
-	
+//resize
+// $(document).ready(function(){
+// 	$(".dragObject").resizable({
+// 		containment:"#containerDrop"
