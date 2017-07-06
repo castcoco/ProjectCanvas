@@ -19,6 +19,7 @@
 		margin-left:auto;
 		margin-right:auto;
 		margin-top:20px;
+		text-align: center;
 		}
 
 	#origin
@@ -40,8 +41,48 @@
 	  border: solid 2px gray;
 	}
 
+	#basicTool{
+		background-color: #FF83FA;
+		display: inline-block;
+		width:100px;
+		height:200px;
+		float:right;
+		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+	}
+
+	.content-info div{
+		margin:0 10px;
+		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+
+	}
+
+	.rectangleTool{
+		display:inline-block;
+		margin-top:15px;
+		margin-left:10px;
+		height:30px;
+		width:70px;
+		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+		opacity: 0.7;
+	}
+
+	.littleIcon{
+	display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    padding-right:10px;
+    cursor: pointer;
+
+	}
+
+	#operation-bar{
+		text-align:center;
+
+	}
 	</style>
 
+	</script>
 </head>
 <body>
 <div class="content-info">
@@ -50,13 +91,29 @@
 				<img class ="dragObject" id ="barEle1" src ="images/basil.png" value= basil width= "60" height ="60" >
 				<img class ="dragObject" id ="barEle2" src ="images/parsely.png" value= mint width= "60" height ="60">
 				<img class ="dragObject" id ="barEle3" src ="images/mint2.png" value= mint width= "60" height ="60" >
+				<img class ="dragObject" id ="barEle4" src ="images/radish.png" value= radish width= "60" height ="60">
 			</div>
 </div>
 
+<div id="operation-bar">
+				<img class ="littleIcon" id ="undoIcon" src ="images/undo2.png" alt="undo" width= "30" height ="30">
+				
+				<img class ="littleIcon" id ="printIcon" src ="images/printerIcon.png" alt="eraseAll" width= "30" height ="30">
+				
+				<img class ="littleIcon" id ="eraseAllIcon" src ="images/eraseAll.png" alt="eraseAll" width= "30" height ="30">
 
-<div id="containerDrop" width="600" height="500">
+				<button class="button">Publish</button>
+			</div>
+
+<div class = "containerDrop" id="containerDrop" width="600" height="500">
 	<br>
 	<p>Drop here</p>
+</div>
+
+<div class="basicTool" id="basicTool">
+	<img class ="rectangleTool" id ="barEle1" src ="images/brown.png">
+</div>
+	
 </div>
 <script src = "dnd.js"></script>
 </body>
