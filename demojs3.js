@@ -1,133 +1,96 @@
-// pattern for drop event
-// var $canvas = $("#canvas");
-// var canvasOffset = $canvas.Offset();
-// var offSetX = canvasOffset.left;
-// var offSetY = canvasOffset.top;
-
-// var pic = new Image();
-// pic.src ="images/strawberries2.png";
 
 
-// $(function(){
-// 	$( ".dragMe" ).draggable({
-// 		helper: "clone",
-// 		revert:"invalid",
-// 		stack:".dragMe"
-// 	});
-    
-//     $( ".canvas" ).droppable({
-//     drop: function(event, ui) {
-//         $.ui.ddmanager.current.cancelHelperRemoval = true;
-//     }
-// }).sortable().disableSelection();   
-// });
-
-
-//drag and drop event --data transfer interface
-
-var dragImage = document.getElementById("barEle");
-var dropLoc = document.getElementById("container-template");
-var draggable = document.getElementById("bar");
-
-
-// function dragStartHandle(evt){
-// 	console.log("it starts dragging");
-// 	evt.dataTransfer.setData('key', evt.target.id);
-// 	//evt.dataTransfer.setDragImage(img, evt.target.id);
-// 	evt.dropEffect ="move"
-// 	//var img = new Image();
-// 	//img.src = "images/testherbslcon.png";
-	
-// }
-
-dragImage.ondragstart = function(evt){   //drag is started
-	evt.dataTransfer.setData('text',evt.target.id);
-	console.log("it's dragging");
-}
-
-// function dragOverHandle(evt){
-// 	evt.preventDefault();
-// 	console.log("it's dragging over?!");
-// }
-
-dropLoc.ondragover = function(evt){    //drag over on canvas
-	evt.preventDefault();
-	console.log("it's dragging over?!");
-}
-
-// function dropHandler(evt){
-// 	console.log("start dropping")
-// 	evt.preventDefault();
-// 	var element = evt.dataTransfer.getData("key");
-// 	evt.target.appendChild(document.getElementById(element));
-// 	evt.dataTransfer.ClearData();
-// 	console.log("done");
-// }
-
-dropLoc.ondrop = function(evt){    //drop the item
-	var dropImage = evt.dataTransfer.getData('text'); 
-	evt.preventDefault();
-	console.log("it is dropped");
-	console.log(dropImage);
-	var myElement = document.getElementById(dropImage);
-	console.log(myElement);
-	var myNewElement = document.createElement('img');
-	myNewElement.src = myElement.src
-	dropLoc.appendChild(myNewElement);
-	console.log("done")
-}
-
-// $(function(){
-// 	$("#barEle").draggable();	
-// });
-
-//dragging object
-
-window.onLoad = addListeners();
-var offX;
-var offY;
-
-
-function addListeners(){
-	document.getElementById("barEle").addEventListener("mousedown", mouseDown, false);
-	window.addEventListener("mouseup", mouseUp, false);
-
-}
-
-
-function mouseUp(){
-	window.removeEventListener("mousemove", divMove, true);
-}
-
-function mouseDown(){
-	window.addEventListener("mousemove", divMove, true);
-}
-
-function divMove(){
-	evt = window.event || evt; 
-	var div = document.getElementById("barEle");
-	div.style.position = "absolute";
-	div.style.top = evt.clientY + "px";
-	div.style.left = evt.clientX + "px";
-}
-
-
-// changing the size of container
-function formSaved(){
-	var selWidth = $('#widthmenu').find(":selected").attr("value");
-	var selLength = $('#lengthmenu').find(":selected").attr("value");
-}
+// saving the form to database
 
 
 
-//change the content of toolbar
-$(document).on("change", "#categoriesSelect", function(){
-	var target = $(this).data("target");
-	var showing = $("option:selected", this).data("show");
-	$(target).children().addClass("hide");
-	$(showing).remove("hide");
+
+
+
+//change the width of container -- bind with dropdown
+$(document).ready(function(){
+	$("select.widthMenu").bind("change", function(evt){
+		var selwidth = $("option:selected", this).attr("value");
+		console.log("selected width");
+		$("#containerDrop").width(selwidth);
+
+	});
 });
 
+//change the width of container -- bind with dropdown
 $(document).ready(function(){
-	$("#categoriesSelect").trigger("change")
+	$("select.heightMenu").bind("change", function(evt){
+		var selLength = $("option:selected", this).attr("value");
+		console.log("selected length");
+		$("#containerDrop").height(selLength);
+
+	});
+});
+
+
+//change the content of toolbar --bind with dropdown
+$(document).on('change', '.categoriesSelect', function() {
+  var target = $(this).data('target');
+  var show = $("option:selected", this).data('show');
+  $(target).children().addClass('hide');
+  $(show).removeClass('hide');
+});
+$(document).ready(function(){
+	$('.categoriesSelect').trigger('change');
+});
+
+
+//drag and drop
+
+$(".dragObject").draggable({
+  	helper:'clone',
+  	cursor:'move',
+  	tolerant:'fit',
+
+});
+
+
+//dropping to container
+$('#containerDrop').droppable({
+  accept:'.dragObject',
+  drop: function(ev, ui) { 
+  	if (ui.draggable[0].id) {
+    $(this).append($(ui.helper).clone(true).draggable({containment:"#containerDrop", scroll: false}));
+  } 
+}
+});
+
+
+//remove dropped item in container
+$(".eraseAllIcon").click(function(){
+	$("#containerDrop .plant").remove();
 })
+
+//save dropped item via button in container
+
+$(".saveIcon").click(function(){
+	//var jsonData = {"data":[]};
+	var dataObj = {"data":[]};
+	$("#containerDrop > .plant").each(function () { 
+		var obj = { "type":$(this).data('plant'),"height":$(this).css("height"), "width": $(this).css("width"), "top": $(this).css("top"), 
+					"bottom": $(this).css("bottom"), "left": $(this).css("left"), "right": $(this).css("right"), "garden_id": garden_id};
+		dataObj["data"].push(obj);
+		//var obj = { "height":this.height, "width": this.width, "top": $(this).css("top")};
+		//console.log(dataObj["data"][0]);
+	});
+
+	console.log(JSON.stringify(dataObj));
+
+	var request = $.ajax({
+	  url: "mygarden.php",
+	  method: "POST",
+	  data: dataObj,
+	  dataType: "JSON"
+	}); 
+});
+
+//print out the page
+$(".printIcon").click(function(){
+	$("#containerDrop").show();
+	window.print();
+});
