@@ -1,12 +1,5 @@
 
 
-// saving the form to database
-
-
-
-
-
-
 //change the width of container -- bind with dropdown
 $(document).ready(function(){
 	$("select.widthMenu").bind("change", function(evt){
@@ -68,7 +61,7 @@ $(".eraseAllIcon").click(function(){
 
 //save dropped item via button in container
 
-$(".saveIcon").click(function(){
+$("#saveIcon").click(function(){
 	//var jsonData = {"data":[]};
 	var dataObj = {"data":[]};
 	$("#containerDrop > .plant").each(function () { 
@@ -86,7 +79,7 @@ $(".saveIcon").click(function(){
 	  method: "POST",
 	  data: dataObj,
 	  dataType: "JSON"
-	}); 
+}); 
 });
 
 //print out the page
@@ -94,3 +87,19 @@ $(".printIcon").click(function(){
 	$("#containerDrop").show();
 	window.print();
 });
+
+// saving the form to JSON and to database
+$("form").submit(function(ev){
+	var formData = JSON.stringify($("#php-form").serializeArray());
+	console.log($(this).serializeArray());
+	ev.preventDefault();
+	var fData = {"id":$(this).data('id'), "name":$(this).data('name'), "width":$(this).data('width'), "length":$(this).data("length"), 
+				"garden_type":$(this).data("garden_type")}
+	var request = $.ajax({
+	  url: "php-form.php",
+	  method: "POST",
+	  data: formData,
+	  dataType: "JSON"
+	 }); 
+});
+
