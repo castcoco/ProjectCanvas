@@ -19,12 +19,16 @@
 		<h1>Welcome to Garden Planner</h1>
 	</header>
 	
-	<form>
+<!-- 	<form action="php-form.php" name="php-form" id="php-form" method="post">
+ --> 	<form enctype='application/json'>
+		<label>Garden Name:</label>
+		<input type = "text" id="garName" name="garName" size="10">
+		<p></p>
 		<label>Garden Type:</label>
-		<input type = "text" value ="" id="garType" size="10">
+		<input type = "text" id="garType" name="garType" size="10">
 		<p></p>
 		<label>Width: </label>
-			<select class ="widthMenu" id= "widthMenu" style="width: 100px">
+			<select class ="widthMenu" id= "widthMenu" name="widthMenu" style="width: 100px">
 			<option value="1000"> 10 meters </option>
 			<option value="900" > 9 meters </option>
 			<option value="800"> 8 meters</option>
@@ -38,7 +42,7 @@
 			</select>
 			<p></p>
 		<label>Length:</label>
-			<select class="heightMenu" id= "heightMenu" style="width: 100px">
+			<select class="heightMenu" id= "heightMenu" name="lengthMenu" style="width: 100px">
 			<option value="1000" > 10 meters </option>
 			<option value="900"> 9 meters </option>
 			<option value="800"> 8 meters </option>
@@ -51,7 +55,7 @@
 			<option value="100"> 1 meters</option>
 			</select>
 			<p></p>
-			<button type="button" onclick="formSaved()">SAVE</button>
+			<button type="submit" id="saveBtn" name="formSave">SAVE</button>
 	</form>
 
 	<article>
@@ -109,7 +113,7 @@
 				<div class ="littleIcon printIcon"></div>
 				<div class ="littleIcon copyIcon"></div>
 				<div class ="littleIcon openNewIcon"></div>
-				<div class ="littleIcon saveIcon"></div>
+				<div class ="littleIcon saveIcon"  id ="saveIcon"></div>
 				<button class="button">Publish</button>
 			</div>
 				
