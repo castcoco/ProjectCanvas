@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Garden: Home Grow Master</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="mycssone.css">
+ -->
+	<style>
+	ul{
+	list-style:none;
+	margin: 0px; padding: 0px;
+
+	}
+	ul li a{
+		text-decoration: none;
+		color: black;
+		display:block;
+	}
+
+	ul li{
+		margin: 0;
+		padding: 0;
+		float:left;
+		width:200px;
+		height:45px;
+	/*	background-color:white;*/
+		font-size: 16px;
+		font-family: Verdana;
+		line-height:45px;
+		text-align: center;
+		opacity:.6;
+		position:relative;
+
+	}
+
+	ul li a:hover{
+		background-color: #76EE00;
+	}
+
+
+	ul li ul li{
+		display:none;
+	}
+
+	ul li:hover ul li{
+		display:block;
+	}
+
+	ul ul ul{
+		margin-left:200px;
+		top:0px;
+		position:absolute;
+	}
+	header {
+			background-image: url("images/headphoto-edit.jpg");
+			background-position: right;
+			background-repeat: repeat-x;
+			height:200px;
+			width:100%;
+			}
+
+	#navbar{
+		float:right;
+		margin-top: 200px;
+		width:100%;
+		background: white;
+		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+		cursor:pointer;
+	}
+
+	.mainModal{
+		text-align:center;
+		margin-left:auto;
+		margin-right:auto;
+		padding:10px;
+		width:auto;
+		height:auto;
+		display:inline-block;
+/*		border-radius: 20px;
+*/		border-color: green;
+		border:solid 0.5px;
+		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+		cursor:pointer;
+		color:#555555;
+
+	}
+		.cancellButton{
+			background-color: #EE0000;
+			color:#ffffff;
+			margin-top: 10px;
+		}
+
+		.formbottom, .modalHeadContainer, .modalHead {
+			background-color: #CDC8B1;
+			height:40px;
+		}
+		.signin{
+			display:block;
+		}
+
+		.modalContainer{
+			display: inline-block;
+			text-align: left;
+			vertical-align: middle;
+			opacity:.7;
+			
+		}
+		.loginButton{
+			display:block;
+			background-color:#7CFC00;
+			width:auto;
+			height:auto;
+			height:auto;
+			margin:0;
+			padding:0;
+
+		}
+		.cross-corner{
+			float:right;
+			margin-right:10px;
+			margin-top:5px;
+
+		}
+		.tab-pane{
+			display:inline-block;
+			height:auto;
+		}
+
+
+	</style>
+
+	<script>
+		
+
+		$("#signin").on("click",function(){
+			$($(this).attr("data-target")).mainModal("show");
+		})
+
+		// Get the modal
+		var modal = document.getElementById('mainModal');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+        		modal.style.display = "none";
+    		}
+		}
+
+
+	</script>
+	</head>
+	<body>
+	<header>
+	<div id="navbar">
+		<ul>
+			<li><a href="#">HOME</a></li>
+			<li><a href="#">MY GARDEN</a>
+				<ul>
+					<li><a href="#">GARDEN PLANNER</a>
+						<ul>
+							<li><a href="#">NEW GARDEN VIEW</a></li>
+							<li><a href="#">SAVED GARDEN</a></li>
+						</ul>
+					</li>
+					<li><a href="#">HARVEST DIARY</a></li>
+					<li><a href="#">MY PHOTO</a></li>
+					<li><a href="#">MY ACCOUNT</a></li>
+				</ul>
+			</li> 
+			<li><a href="#">PLANT SEARCH</a></li>
+			<li><a href="#">LIFESTYLE</a></li>
+ 			<li><a href="#" id="signin" data-toggle="mainModal" data-target="#mainModal">LOGIN / SIGN UP</a></li>
+ 		</ul>
+	</div>
+	</header>
+
+	<div class="mainModal" id="mainModal" tabindex="-1" role="dialog" >
+		<div class="modalContent" style="max-width:600px">
+			<div class="modalHeadContainer"><br>
+				<span onclick="document.getElementById('mainModal').style.display='none'" class="cross-corner">&times;</span>
+					<div class="modalHead">
+							<h2>Sign In / Register</h2>
+					</div>
+			</div>
+			<br>
+			<br>
+			<div class="modalBody">
+				<div class="tabArea">
+					<ul class="nav nav-tabs" data-tabs="tabs">
+						<li class="active">
+							<a href="#signInTab" data-toggle="tab">SIGN IN</a>
+						</li>
+						<li>
+							<a href="#registerTab" data-toggle="tab">REGISTER</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="tabContent">
+				<div class="tab-pane active" id="SignInTab">
+					<form class="SignForm" role="form" class="containerArea" action="signInForm.php" method="post">
+					<br>
+					<br>
+
+						<div class="modalContainer">
+							<p class="fieldset">
+						        <label class="Username">Username</label>
+						        <input class = "username" name="username" type="text" placeholder="please enter username" required>
+						        <span class="errorMsg"></span>
+						    </p>
+						    <p class="fieldset">
+						        <label class="Password">Password</label>
+						        <input class="pwd" name="pwd" type="text" placeholder="please enter password" required>
+						        <span class="errorMsg"></span>
+						    </p>
+						    <p class="fieldset">
+						        <button class="loginButton" type="submit">Login</button>
+						    </p>
+
+						    <p class="fieldset">
+								<input type="checkbox" id="rememberMe" checked="checked">Remember Me
+							</p>
+						</div>
+					</form>
+				</div>
+				<div class="tab-pane" id="registerTab">
+					<form class="RegForm" role="form" class="containerArea" action="registerForm.php" method="post">
+						<br>
+						<br>
+						<div class="modalContainer">
+							<p class="fieldset">
+						        <label class="Username">Username</label>
+						        <input class = "username" name="username" type="text" placeholder="please enter username" required>
+						        <span class="errorMsg"></span>
+						    </p>
+						    <p class="fieldset">
+						        <label class="Password">Password</label>
+						        <input class="pwd" name="pwd" type="text" placeholder="please enter password" required>
+						        <span class="errorMsg"></span>
+						    </p>
+						    <p class="fieldset">
+						        <label class="Password">Email</label>
+						        <input class="email" name="email" type="text" placeholder="please enter e-mail" required>
+						        <span class="errorMsg"></span>
+						    </p>
+						    <p class="fieldset">
+						        <button class="createButton" type="submit">Create an Account</button>
+						    </p>
+						</div>
+					</form>
+				</div>
+			</div>	
+<!-- 					<div class="formbottom">
+						<button onclick="document.getElementById('mainModal').style.display='none'" type="button" class="cancellButton">Cancel</button>
+        				<span class="forgetPwd">Forgot <a href="#">password</a></span>
+					</div>
+ -->			
+		</div>
+	</div>
+
+	</body>
+</html>
