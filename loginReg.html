@@ -4,8 +4,9 @@
 	<title>Garden: Home Grow Master</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 <!-- 	<link rel="stylesheet" type="text/css" href="mycssone.css">
  -->
 	<style>
@@ -60,8 +61,11 @@
 			background-repeat: repeat-x;
 			height:200px;
 			width:100%;
-			}
 
+	}
+	#navbar ul{
+		float:right;
+	}
 	#navbar{
 		float:right;
 		margin-top: 200px;
@@ -72,9 +76,12 @@
 	}
 
 	.mainModal{
+		position: absolute;
 		text-align:center;
-		margin-left:auto;
-		margin-right:auto;
+		left:50%;
+		right:50%;
+		margin-left:-300px;
+		margin-right:-300px;
 		padding:10px;
 		width:auto;
 		height:auto;
@@ -111,49 +118,69 @@
 		.loginButton{
 			display:block;
 			background-color:#7CFC00;
-			width:auto;
-			height:auto;
+			width:100%;
 			height:auto;
 			margin:0;
-			padding:0;
+			padding:5px;
 
 		}
 		.cross-corner{
 			float:right;
 			margin-right:10px;
-			margin-top:5px;
-
 		}
 		.tab-pane{
-			display:inline-block;
+			position:relative;
+			display:block;
 			height:auto;
 		}
+		.createButton{
+			display:block;
+			width:100%;
+			height:auto;
+			padding:5px;
+		}
 
+		.decoline hr{
+			width:100%;
+			color:blue;
 
+		}
 	</style>
 
+	  
+
 	<script>
-		
 
-		$("#signin").on("click",function(){
-			$($(this).attr("data-target")).mainModal("show");
-		})
+		$(document).ready(function(){
+			$(".showPassword").change(function(index, input){
+				var $input = $(input);
+				var change="";
+				$(".hide-password").click(function(){
+					if ($(this).html() ==="Show"){
+						//change attribute
+						$(".showpassword").attr("type", "text");
+						//change the text
+						$(this).html("Hide")
+						change="text";
+					}else{
+						//change attribute
+						$(".showPassword").attr("type", "password");
+						//change thext
+						$(this).html("Show");
+						change="password";
+					}
 
-		// Get the modal
-		var modal = document.getElementById('mainModal');
+				});
+			});
+		});
 
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-        		modal.style.display = "none";
-    		}
-		}
 
 
 	</script>
 	</head>
 	<body>
 	<header>
+	
 	<div id="navbar">
 		<ul>
 			<li><a href="#">HOME</a></li>
@@ -172,12 +199,13 @@
 			</li> 
 			<li><a href="#">PLANT SEARCH</a></li>
 			<li><a href="#">LIFESTYLE</a></li>
- 			<li><a href="#" id="signin" data-toggle="mainModal" data-target="#mainModal">LOGIN / SIGN UP</a></li>
+ 			<li><a href = "#mainModal" class="modal-toggle" data-toggle="modal" data-target="#mainModal" data-href="#">LOGIN / SIGN UP</a></li>
  		</ul>
 	</div>
+	
 	</header>
-
-	<div class="mainModal" id="mainModal" tabindex="-1" role="dialog" >
+	
+	<div class="mainModal" id="mainModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" style="display: none">
 		<div class="modalContent" style="max-width:600px">
 			<div class="modalHeadContainer"><br>
 				<span onclick="document.getElementById('mainModal').style.display='none'" class="cross-corner">&times;</span>
@@ -187,19 +215,14 @@
 			</div>
 			<br>
 			<br>
-			<div class="modalBody">
 				<div class="tabArea">
-					<ul class="nav nav-tabs" data-tabs="tabs">
-						<li class="active">
-							<a href="#signInTab" data-toggle="tab">SIGN IN</a>
-						</li>
-						<li>
-							<a href="#registerTab" data-toggle="tab">REGISTER</a>
-						</li>
+					<ul class="nav nav-tabs" data-tabs="tabs" role="tabList">
+						<li class="active"><a href="#SignInTab" data-toggle="tab">SIGN IN</a></li>
+						<li><a href="#registerTab" data-toggle="tab">REGISTER</a></li>
 					</ul>
 				</div>
-			</div>
-			<div class="tabContent">
+
+			<div class="tab-content">
 				<div class="tab-pane active" id="SignInTab">
 					<form class="SignForm" role="form" class="containerArea" action="signInForm.php" method="post">
 					<br>
@@ -209,12 +232,13 @@
 							<p class="fieldset">
 						        <label class="Username">Username</label>
 						        <input class = "username" name="username" type="text" placeholder="please enter username" required>
-						        <span class="errorMsg"></span>
+						        <span class="errorMsg" value="invalid!"></span>
 						    </p>
 						    <p class="fieldset">
-						        <label class="Password">Password</label>
-						        <input class="pwd" name="pwd" type="text" placeholder="please enter password" required>
-						        <span class="errorMsg"></span>
+						        <label class="Lpassword">Password</label>
+						        <input class="showPassword" name="pwd" type="text" placeholder="please enter password" required>
+						        <a href="#0" id="toggle" class="hide-password">Hide</a>
+						        <span class="errorMsg" value="invalid!"></span>
 						    </p>
 						    <p class="fieldset">
 						        <button class="loginButton" type="submit">Login</button>
@@ -226,38 +250,57 @@
 						</div>
 					</form>
 				</div>
-				<div class="tab-pane" id="registerTab">
-					<form class="RegForm" role="form" class="containerArea" action="registerForm.php" method="post">
-						<br>
-						<br>
-						<div class="modalContainer">
-							<p class="fieldset">
-						        <label class="Username">Username</label>
-						        <input class = "username" name="username" type="text" placeholder="please enter username" required>
-						        <span class="errorMsg"></span>
-						    </p>
-						    <p class="fieldset">
-						        <label class="Password">Password</label>
-						        <input class="pwd" name="pwd" type="text" placeholder="please enter password" required>
-						        <span class="errorMsg"></span>
-						    </p>
-						    <p class="fieldset">
-						        <label class="Password">Email</label>
-						        <input class="email" name="email" type="text" placeholder="please enter e-mail" required>
-						        <span class="errorMsg"></span>
-						    </p>
-						    <p class="fieldset">
-						        <button class="createButton" type="submit">Create an Account</button>
-						    </p>
-						</div>
-					</form>
-				</div>
-			</div>	
-<!-- 					<div class="formbottom">
-						<button onclick="document.getElementById('mainModal').style.display='none'" type="button" class="cancellButton">Cancel</button>
-        				<span class="forgetPwd">Forgot <a href="#">password</a></span>
+				<div class="tab-pane fade" id="registerTab">
+				<form class="RegForm" role="form" class="containerArea" action="registerForm.php" method="post">
+					<br>
+					<br>
+					<div class="modalContainer">
+						<p class="fieldset">
+					        <label class="Lusername">Username</label>
+					        <input class = "username" name="username" type="text" placeholder="please enter username" required>
+					        <span class="errorMsg"></span>
+					    </p>
+					    <p class="fieldset">
+					        <label class="Lpassword">Password</label>
+					        <input class="showPassword" name="pwd" type="text" placeholder="please enter password" required>
+					        <a href="#0" id="toggle" class="hide-password">Hide</a>
+					        <span class="errorMsg" value="invalid!"></span>
+					    </p>
+					    <p class="fieldset">
+					        <label class="Lemail">Email</label>
+					        <input class="email" name="email" type="text" placeholder="please enter e-mail" required>
+					        <span class="errorMsg" value="invalid!"></span>
+					    </p>
+					    <p class="fieldset">
+					        <button class="createButton" type="submit">Create an Account</button>
+					    </p>
 					</div>
- -->			
+				</form>
+				</div>
+			</div>
+		</div>	
+				<div class="formbottom">
+					<button onclick="document.getElementById('mainModal').style.display='none'" type="button" class="cancellButton">Cancel</button>
+    				<span class="forgetPwd">Forgot <a href="#">password</a></span>
+				</div>
+				<div class="decoline"><hr></div>
+				<div class="row">	
+					<div class="col-sm-4">
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary"><i class="fa fa-facebook"></i>Sign in with Facebook</button>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="btn-group">
+							<button type="button" class="btn btn-danger"><i class="fa fa-google-plus"></i>Sign in with GooglePlus</button>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="btn-group">
+							<button type="button" class="btn btn-info"><i class="fa fa-linkedin"></i>Sign in with Linkedin</button>
+						</div>
+					</div>
+				</div>	
 		</div>
 	</div>
 
