@@ -91,7 +91,7 @@
 		border:solid 0.5px;
 		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
 		cursor:pointer;
-		color:#555555;
+		background-color: #ffffff;
 
 	}
 		.cancellButton{
@@ -145,6 +145,13 @@
 			color:blue;
 
 		}
+
+
+		.modal-backdrop {
+		  z-index: -1;
+		}
+
+
 	</style>
 
 	  
@@ -204,13 +211,15 @@
 	</div>
 	
 	</header>
-	
+	</body>
+
+	<!--modal-->
 	<div class="mainModal" id="mainModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" style="display: none">
 		<div class="modalContent" style="max-width:600px">
 			<div class="modalHeadContainer"><br>
 				<span onclick="document.getElementById('mainModal').style.display='none'" class="cross-corner">&times;</span>
 					<div class="modalHead">
-							<h2>Sign In / Register</h2>
+						<h2>Sign In / Register</h2>
 					</div>
 			</div>
 			<br>
@@ -227,7 +236,6 @@
 					<form class="SignForm" role="form" class="containerArea" action="signInForm.php" method="post">
 					<br>
 					<br>
-
 						<div class="modalContainer">
 							<p class="fieldset">
 						        <label class="Username">Username</label>
@@ -243,7 +251,6 @@
 						    <p class="fieldset">
 						        <button class="loginButton" type="submit">Login</button>
 						    </p>
-
 						    <p class="fieldset">
 								<input type="checkbox" id="rememberMe" checked="checked">Remember Me
 							</p>
@@ -277,32 +284,31 @@
 					</div>
 				</form>
 				</div>
-			</div>
-		</div>	
+			</div>	
+				
 				<div class="formbottom">
 					<button onclick="document.getElementById('mainModal').style.display='none'" type="button" class="cancellButton">Cancel</button>
     				<span class="forgetPwd">Forgot <a href="#">password</a></span>
 				</div>
 				<div class="decoline"><hr></div>
-				<div class="row">	
-					<div class="col-sm-4">
-						<div class="btn-group">
-							<button type="button" class="btn btn-primary"><i class="fa fa-facebook"></i>Sign in with Facebook</button>
+					<div class="row">	
+						<div class="col-sm-4">
+							<div class="btn-group">
+								<button type="button" class="btn btn-primary"><i class="fa fa-facebook"></i>Sign in with Facebook</button>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="btn-group">
-							<button type="button" class="btn btn-danger"><i class="fa fa-google-plus"></i>Sign in with GooglePlus</button>
+						<div class="col-sm-4">
+							<div class="btn-group">
+								<button type="button" class="btn btn-danger"><i class="fa fa-google-plus"></i>Sign in with Google</button>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="btn-group">
-							<button type="button" class="btn btn-info"><i class="fa fa-linkedin"></i>Sign in with Linkedin</button>
+						<div class="col-sm-4">
+							<div class="btn-group">
+								<button type="button" class="btn btn-info"><i class="fa fa-linkedin"></i>Sign in with Linkedin</button>
+							</div>
 						</div>
-					</div>
-				</div>	
+					</div>	
+				</div>
 		</div>
 	</div>
-
-	</body>
 </html>
